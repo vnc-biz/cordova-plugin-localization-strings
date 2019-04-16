@@ -84,10 +84,10 @@ function writeLocalisationFieldsToXcodeProj(filePaths, groupname, proj) {
 }
 module.exports = function(context) {
 
-    var path = require('path');
-    var q = require('q');
+    var path = context.requireCordovaModule('path');
+    var q = context.requireCordovaModule('q');
     var deferred = q.defer();
-    var glob = require('glob');
+    var glob = context.requireCordovaModule('glob');
     var xcode = require('xcode');
 
     var localizableStringsPaths = [];
@@ -163,9 +163,9 @@ module.exports = function(context) {
 
 function getTargetLang(context) {
     var targetLangArr = [];
-    var deferred = require('q').defer();
-    var path = require('path');
-    var glob = require('glob');
+    var deferred = context.requireCordovaModule('q').defer();
+    var path = context.requireCordovaModule('path');
+    var glob = context.requireCordovaModule('glob');
 
     glob("translations/app/*.json",
         function(err, langFiles) {
