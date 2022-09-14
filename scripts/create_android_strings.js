@@ -11,7 +11,7 @@ function fileExists(path) {
 }
 
 module.exports = function (context) {
-    var q = context.require('q');
+    var q = require('q');
     var deferred = q.defer();
 
     getTargetLang(context).then(function (languages) {
@@ -85,9 +85,9 @@ module.exports = function (context) {
 
 function getTargetLang(context) {
     var targetLangArr = [];
-    var deferred = context.require('q').defer();
-    var path = context.require('path');
-    var glob = context.require('glob');
+    var deferred = require('q').defer();
+    var path = require('path');
+    var glob = require('glob');
 
     glob("translations/app/*.json", function (err, langFiles) {
         if (err) {
@@ -111,7 +111,7 @@ function getTargetLang(context) {
 }
 
 function getLocalizationDir(context, lang) {
-    var path = context.require('path');
+    var path = require('path');
 
     var langDir;
     switch (lang) {
@@ -126,7 +126,7 @@ function getLocalizationDir(context, lang) {
 }
 
 function getLocalStringXmlPath(context, lang) {
-    var path = context.require('path');
+    var path = require('path');
 
     var filePath;
     switch (lang) {
@@ -141,8 +141,8 @@ function getLocalStringXmlPath(context, lang) {
 }
 
 function getResPath(context) {
-    var path = context.require('path');
-    var locations = context.require('cordova-lib/src/platforms/platforms').getPlatformApi('android').locations;
+    var path = require('path');
+    var locations = require('cordova-lib/src/platforms/platforms').getPlatformApi('android').locations;
 
     if (locations && locations.res) {
         return locations.res;
@@ -153,8 +153,8 @@ function getResPath(context) {
 
 // process the modified xml and put write to file
 function processResult(context, lang, langJson, stringXmlJson) {
-    var path = context.require('path');
-    var q = context.require('q');
+    var path = require('path');
+    var q = require('q');
     var deferred = q.defer();
 
     var mapObj = {};
